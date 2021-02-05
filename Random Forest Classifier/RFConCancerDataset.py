@@ -29,7 +29,7 @@ optimalDepth = gridSearch.best_params_.get("max_depth")
 optimalLeaf = gridSearch.best_params_.get("min_samples_leaf")
 
 bestModel = RandomForestClassifier(n_estimators=optimalEstimators, max_depth=optimalDepth, max_features='sqrt', min_samples_leaf=optimalLeaf)
-k_fold = model_selection.KFold(n_splits=10, random_state=123)
+k_fold = model_selection.KFold(n_splits=10, random_state=123, shuffle=True)
 
 predictions = model_selection.cross_val_predict(bestModel, feature_test, target_test, cv=k_fold)
 print("Accuracy of the tuned model: ", accuracy_score(target_test, predictions))
